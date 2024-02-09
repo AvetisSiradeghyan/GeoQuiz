@@ -35,12 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         reg.setOnClickListener(this);
     }
 
-//    @Override
-//    public void onClick(View view) {
-//        Intent intentL = new Intent(this, LogIn.class);
-//        startActivity(intentL);
-//
-//    }
+    @Override
+    public void onClick(View view) {
+        Intent intentL = new Intent(this, Registration.class);
+        startActivity(intentL);
+
+    }
 
 //    @Override
 //        public void onClick(View view) {
@@ -49,12 +49,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //}
 
 
-    @Override
-    public void onClick(View view) {
-        Intent intentL = new Intent(this, Menu.class);
-        startActivity(intentL);
-
-    }
+//    @Override
+//    public void onClick(View view) {
+//        Intent intentL = new Intent(this, Menu.class);
+//        startActivity(intentL);
+//
+//    }
 
 
 }

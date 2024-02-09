@@ -9,12 +9,14 @@ import android.widget.Button;
 
 public class Reg3 extends AppCompatActivity implements View.OnClickListener{
 
+    Button next1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg3);
 
-        Button next1;
+
 
         next1 = (Button) findViewById(R.id.next);
 
