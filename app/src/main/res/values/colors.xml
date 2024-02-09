@@ -4,5 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="backgraund">#91B594</color>
     <color name="btns">#799854</color>
-    <color name="no">#00799854</color>
+    <color name="no">#00B3EC6F</color>
+    <color name="backgraundL">#9791B594</color>
 </resources>

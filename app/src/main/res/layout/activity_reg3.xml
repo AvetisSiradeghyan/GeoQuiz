@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -24,46 +25,39 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:tintMode="src_in"
+
             app:srcCompat="@android:drawable/ic_dialog_email"
             app:tint="@color/btns" />
+
 
         <TextView
 
             android:id="@+id/textView"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="40dp"
-            android:text="Enter your email"
-            android:textSize="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center"
 
+            android:layout_marginTop="60dp"
+            android:text="Enter your username"
+            android:textSize="25dp"
+            android:textStyle="bold"
+
+            />
 
         <EditText
             android:id="@+id/editTextTextEmailAddress2"
+            style="@android:style/Widget.Holo.Light.EditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_gravity="center"
-            android:ems="10"
+            android:layout_marginTop="50dp"
 
-            android:hint="email"
-            android:inputType="textEmailAddress"
+
+            android:ems="10"
+            android:inputType="text"
             android:textSize="20dp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="48dp"
-            android:backgroundTint="@color/btns"
-            android:text="Verify"
-            />
+
 
 
 
@@ -76,9 +70,10 @@
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:backgroundTint="@color/btns"
-        android:text="Next"
+        android:text="Finish"
         android:textStyle="bold"
         android:layout_marginTop="20dp"/>
+
 
 
 
