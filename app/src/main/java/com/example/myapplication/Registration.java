@@ -24,7 +24,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent intentR = new Intent(this, Reg2.class);
+        Intent intentR = new Intent(this, MainActivity.class);
         startActivity(intentR);
 
     }

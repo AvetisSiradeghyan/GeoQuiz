@@ -36,7 +36,7 @@ public class LogIn extends AppCompatActivity implements  View.OnClickListener{
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-                Intent intentL2 = new Intent(this, LogIn2.class);
+                Intent intentL2 = new Intent(this, MainActivity.class);
                 startActivity(intentL2);
 
 
