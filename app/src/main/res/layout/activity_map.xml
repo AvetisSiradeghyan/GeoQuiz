@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/map"
     tools:context=".Map">
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="949dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#8BC34A"
-        android:rotationX="180"
-        android:rotationY="180"
-        android:tint="#C57E04"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        app:srcCompat="@drawable/map" />
+
+
+</LinearLayout>
