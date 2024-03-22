@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity  {
 
     Button log;
 
@@ -28,33 +28,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         play = (Button) findViewById(R.id.button);
 
-        play.setOnClickListener(this);
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentL = new Intent(MainActivity.this, Menu.class);
+                startActivity(intentL);
+            }
+        });
 
-        log.setOnClickListener(this);
+        log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentL = new Intent(MainActivity.this, LogIn.class);
+                startActivity(intentL);
+            }
+        });
 
-        reg.setOnClickListener(this);
+        reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentL = new Intent(MainActivity.this, Registration.class);
+                startActivity(intentL);
+            }
+        });
     }
 
-    @Override
-    public void onClick(View view) {
-        Intent intentL = new Intent(this, Registration.class);
-        startActivity(intentL);
 
-    }
-
-//    @Override
-//        public void onClick(View view) {
-//            Intent intentL = new Intent(this, LogIn.class);
-//            startActivity(intentL);
-//}
-
-
-//    @Override
-//    public void onClick(View view) {
-//        Intent intentL = new Intent(this, Menu.class);
-//        startActivity(intentL);
-//
-//    }
 
 
 }
