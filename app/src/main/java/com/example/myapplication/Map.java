@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,22 +8,61 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Map extends AppCompatActivity {
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-    Button btn;
+import java.util.ArrayList;
+
+public class Map extends AppCompatActivity implements OnMapReadyCallback {
+
+    private GoogleMap map;
+    ArrayList<LatLng> arrayList = new ArrayList<>();
+    LatLng Vanadzor = new LatLng(40.81450196869515, 44.48257323317036);
+    ArrayList<String> title = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        btn = (Button) findViewById(R.id.tufta);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+        arrayList.add(Vanadzor);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        title.add("Vanadzor");
+
+
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        map = googleMap;
+        for (int i = 0; i<arrayList.size(); i++){
+            for (int j = 0; j<title.size(); j++){
+                map.addMarker(new MarkerOptions().position(arrayList.get(i)).title(String.valueOf(title.get(j))));
+            }
+            map.moveCamera(CameraUpdateFactory.newLatLng(arrayList.get(i)));
+        }
+
+
+
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Map.this, First.class);
-                startActivity(intent);
+            public boolean onMarkerClick(@NonNull Marker marker) {
+                String markertitle = marker.getTitle();
+
+                Intent i = new Intent(Map.this, First.class);
+                i.putExtra("title", markertitle);
+                startActivity(i);
+
+                return false;
             }
         });
     }

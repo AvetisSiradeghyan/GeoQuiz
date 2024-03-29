@@ -24,7 +24,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-            Intent intentL = new Intent(this, MapSp.class);
+            Intent intentL = new Intent(this, Map.class);
             startActivity(intentL);
 
 
