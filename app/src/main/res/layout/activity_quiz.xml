@@ -1,90 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/main"
     tools:context=".Quiz">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/total_questions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Total Questions"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Question"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_above="@id/linear_layout"
+        />
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chosen"
-        android:gravity="center"
-        android:textSize="30dp"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+
+        <Button
+            android:id="@+id/ans_a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:text="A" />
+
+        <Button
+            android:id="@+id/ans_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:text="B" />
+
+        <Button
+            android:id="@+id/ans_c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:text="C" />
+
+        <Button
+            android:id="@+id/ans_d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:text="D" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/underline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="______________________"
         android:textStyle="bold"
+        android:textSize="30dp"
+
+        android:layout_below="@id/linear_layout" />
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:layout_below="@id/linear_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="60dp"
+        android:backgroundTint="@color/green"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="30dp"
         />
 
 
 
 
-    <TextView
-        android:layout_marginTop="50dp"
-        android:id="@+id/textView10"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Question" />
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="40dp">
-
-            <Button
-                android:layout_marginTop="50dp"
-                android:id="@+id/button2"
-
-                android:layout_width="300dp"
-                android:layout_height="100dp"
-                android:text="A:" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_marginTop="30dp"
-                android:layout_width="300dp"
-                android:layout_height="100dp"
-                android:text="C:" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="40dp">
-
-            <Button
-                android:layout_marginTop="50dp"
-                android:id="@+id/button4"
-
-                android:layout_width="300dp"
-                android:layout_height="100dp"
-                android:text="B:" />
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_marginTop="30dp"
-                android:layout_width="300dp"
-                android:layout_height="100dp"
-                android:text="D:" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-
-</LinearLayout>
+</RelativeLayout>

@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -21,10 +23,16 @@ import java.util.ArrayList;
 
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
+    float zoomLevel = 7;
     private GoogleMap map;
     ArrayList<LatLng> arrayList = new ArrayList<>();
+
+    LatLng zoom = new LatLng(40, 44.8);
     LatLng Vanadzor = new LatLng(40.81450196869515, 44.48257323317036);
     ArrayList<String> title = new ArrayList<String>();
+
+
+
 
 
     @Override
@@ -65,5 +73,11 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
                 return false;
             }
         });
+
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(zoom).zoom(zoomLevel).build();
+
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+
+        map.moveCamera(cameraUpdate);
     }
 }
