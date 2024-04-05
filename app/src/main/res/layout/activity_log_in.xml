@@ -7,86 +7,99 @@
     android:layout_height="match_parent"
     >
 
-    <LinearLayout
-        android:layout_marginTop="110dp"
-        android:orientation="vertical"
-        android:layout_width="300dp"
-        android:layout_height="450dp"
-        android:layout_gravity="center"
-        android:background="@color/backgraundL"
-
-        >
-
-        <TextView
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="200dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/login"/>
 
 
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="40dp"
-            android:text="Enter your email"
-            android:textSize="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin = "30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_edittext"
+            android:padding="24dp">
+
+            <TextView
 
 
-        <EditText
-            android:id="@+id/editTextTextEmailAddress2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"
-            android:ems="10"
-
-            android:hint="email"
-            android:inputType="textEmailAddress"
-            android:textSize="20dp" />
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Login"
+                android:textSize="36dp"
+                android:textColor="@color/yellow" />
 
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/login_email"
+                android:background="@drawable/custom_edittext"
+                android:layout_marginTop="20dp"
+                android:padding="15dp"
+                android:hint="Email"
+                android:textColor="@color/black"
+               />
 
-        <TextView
-
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:text="Enter your password"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/editTextPass"
-            android:layout_width="wrap_content"
-
-
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-            android:ems="10"
-
-            android:hint="password"
-            android:inputType="textPassword"
-            android:textSize="20dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/login_password"
+                android:background="@drawable/custom_edittext"
+                android:layout_marginTop="20dp"
+                android:padding="15dp"
+                android:hint="Password"
+                android:textColor="@color/black"
+                />
 
 
+            <Button
+                android:id="@+id/login_button"
+                android:textSize="18sp"
 
-    </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/yellow"
+                android:text="Login"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
 
-    <Button
-        android:id="@+id/next"
-        android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/btns"
-        android:text="Next"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/signupRedirectText"
+                android:text="Not yet registered? Sign Up"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/yellow"
+                android:textSize="18sp"/>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
 
 
 

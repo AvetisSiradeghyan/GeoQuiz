@@ -27,7 +27,7 @@ public class First extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
 
-        btn = (Button) findViewById(R.id.button);
+
 
 
         ImageSlider imageSlider = findViewById(R.id.imageSlider);
@@ -40,39 +40,12 @@ public class First extends AppCompatActivity {
 
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
-        prog();
 
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(First.this, Quiz.class);
-                startActivity(intent);
-            }
-        });
+
+
     }
 
-    public void prog(){
-        pb = findViewById(R.id.pb);
 
-        final Timer t = new Timer();
-        TimerTask tt = new TimerTask() {
-            @Override
-            public void run()
-            {
-                counter++;
-                pb.setProgress((100/50)*counter);
-
-                if(counter == 50) {
-                    counter = 0;
-                }
-
-
-            }
-        };
-
-        t.schedule(tt,0,100);
-
-    }
 
 }

@@ -8,11 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity  {
 
+
+    private FirebaseAuth auth;
     Button log;
 
+    private boolean user = LogIn.user;
     Button play;
     Button reg;
 
@@ -21,6 +27,8 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        auth = FirebaseAuth.getInstance();
 
         reg = (Button) findViewById(R.id.reg);
 
@@ -31,8 +39,12 @@ public class MainActivity extends AppCompatActivity  {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentL = new Intent(MainActivity.this, Menu.class);
-                startActivity(intentL);
+                if (user == true) {
+                    Intent intentL = new Intent(MainActivity.this, Menu.class);
+                    startActivity(intentL);
+                }else {
+                    Toast.makeText(MainActivity.this, "Login", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
