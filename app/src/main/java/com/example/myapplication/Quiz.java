@@ -60,6 +60,11 @@ public class Quiz extends AppCompatActivity{
                     if(selectedAnswer.equals(QuizAns.answers[currentQuestionIndex])){
                         score++;
                         selectedButton.setBackgroundColor(Color.GREEN);
+                        ansA.setClickable(false);
+                        ansB.setClickable(false);
+                        ansC.setClickable(false);
+                        ansD.setClickable(false);
+
                         new Handler().postDelayed(
                                 new Runnable() {
                                     @Override
@@ -67,6 +72,10 @@ public class Quiz extends AppCompatActivity{
                                         loadNewQuestion();
                                     }
                                 }, 600);
+                        ansA.setClickable(true);
+                        ansB.setClickable(true);
+                        ansC.setClickable(true);
+                        ansD.setClickable(true);
                     }
                     else {
 
