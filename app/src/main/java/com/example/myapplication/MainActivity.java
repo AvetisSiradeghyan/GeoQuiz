@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity  {
 
 
+    Button guest;
     private FirebaseAuth auth;
     Button log;
 
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        guest = (Button) findViewById(R.id.guest);
+
         auth = FirebaseAuth.getInstance();
 
         reg = (Button) findViewById(R.id.reg);
@@ -35,6 +38,13 @@ public class MainActivity extends AppCompatActivity  {
         log = (Button) findViewById(R.id.login);
 
         play = (Button) findViewById(R.id.button);
+
+        guest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Menu.class));
+            }
+        });
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override

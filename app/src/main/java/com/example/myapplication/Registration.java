@@ -18,10 +18,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Registration extends AppCompatActivity {
 
+    private String pass;
     private FirebaseAuth auth;
-    private EditText signupEmail, signupPassword;
+    private EditText signupEmail, signupPassword, conf;
     private Button signupButton;
     private TextView loginRedirectText;
+    boolean isValid = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +36,21 @@ public class Registration extends AppCompatActivity {
         signupPassword = findViewById(R.id.signup_password);
         signupButton = findViewById(R.id.signup_button);
         loginRedirectText = findViewById(R.id.loginRedirectText);
+        conf = findViewById(R.id.signup_passwordconf);
+
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String user = signupEmail.getText().toString().trim();
                 String pass = signupPassword.getText().toString().trim();
+                if (conf.getText().toString().equals(signupPassword.getText().toString())) {
+                    isValid = false;
+                }
+                else {
+                    isValid = true;
+                    Toast.makeText(Registration.this, "Password doesnot match", Toast.LENGTH_SHORT).show();
+                }
 
                 if(user.isEmpty()){
                     signupEmail.setError("Email cannot be empty");
@@ -46,20 +58,18 @@ public class Registration extends AppCompatActivity {
                     auth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
+                            if(task.isSuccessful() && isValid){
 
-                                auth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(Registration.this, "Sign Up Successfuly.Please verify", Toast.LENGTH_SHORT).show();
+
+                                        Toast.makeText(Registration.this, "Sign Up Successfuly", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(Registration.this, LogIn.class));
-                                    }
-                                });
-
-
-                            }else {
+                                    }else {
                                 Toast.makeText(Registration.this, "Sign Up Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
+
+
+
+
                         }
                     });
                 }

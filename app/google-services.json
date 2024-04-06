@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "801076435379",
+    "project_id": "my-application-8beeb",
+    "storage_bucket": "my-application-8beeb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801076435379:android:4ef6ae7eab3e35c0a493c6",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcVKVwiSkgqn6zFSNEdwUxc2hzc7VIo7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,190 @@
 package com.example.myapplication;
+import static kotlinx.coroutines.time.TimeKt.delay;
 
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+
+public class Quiz extends AppCompatActivity{
+
+    TextView totalQuestionsTextView,liveText;
+    TextView questionTextView;
+    Button ansA, ansB, ansC, ansD;
+    Button submitBtn;
+
+    int score=0;
+
+    int totalQuestion = QuizAns.questions.length;
+    static int currentQuestionIndex = -1;
+    String selectedAnswer = "";
+    Button selectedButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_quiz);
+
+        totalQuestionsTextView = findViewById(R.id.total_questions);
+        questionTextView = findViewById(R.id.question);
+        ArrayList<Button> Buttons = new ArrayList<>();
+        ansA = findViewById(R.id.ans_a);
+        ansB = findViewById(R.id.ans_b);
+        ansC = findViewById(R.id.ans_c);
+        ansD = findViewById(R.id.ans_d);
+        Buttons.add(ansA);
+        Buttons.add(ansB);
+        Buttons.add(ansC);
+        Buttons.add(ansD);
+        submitBtn = findViewById(R.id.ok);
+
+
+
+        totalQuestionsTextView.setText("Total questions : "+totalQuestion);
+
+        loadNewQuestion();
+
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedAnswer != ""){
+                    if(selectedAnswer.equals(QuizAns.answers[currentQuestionIndex])){
+                        score++;
+                        selectedButton.setBackgroundColor(Color.GREEN);
+                        new Handler().postDelayed(
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        loadNewQuestion();
+                                    }
+                                }, 600);
+                    }
+                    else {
+
+                        selectedButton.setBackgroundColor(Color.RED);
+                        for(Button i:Buttons){
+                            if(i.getText().toString().equals(QuizAns.answers[currentQuestionIndex])){
+                                i.setBackgroundColor(Color.GREEN);
+                            }
+                        }
+                        new Handler().postDelayed(
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        loadNewQuestion();
+                                    }
+                                }, 600);
+
+                    }
+                }
+            }
+        });
+        ansA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedAnswer  = ansA.getText().toString();
+                selectedButton = ansA;
+                ansA.setBackgroundColor(Color.GRAY);
+                ansB.setBackgroundColor(Color.TRANSPARENT);
+                ansC.setBackgroundColor(Color.TRANSPARENT);
+                ansD.setBackgroundColor(Color.TRANSPARENT);
+            }
+        });
+        ansB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedAnswer  = ansB.getText().toString();
+                selectedButton = ansB;
+                ansB.setBackgroundColor(Color.GRAY);
+                ansA.setBackgroundColor(Color.TRANSPARENT);
+                ansC.setBackgroundColor(Color.TRANSPARENT);
+                ansD.setBackgroundColor(Color.TRANSPARENT);
+            }
+        });
+        ansC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedAnswer  = ansC.getText().toString();
+                selectedButton = ansC;
+                ansC.setBackgroundColor(Color.GRAY);
+                ansA.setBackgroundColor(Color.TRANSPARENT);
+                ansB.setBackgroundColor(Color.TRANSPARENT);
+                ansD.setBackgroundColor(Color.TRANSPARENT);
+            }
+        });
+        ansD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedAnswer  = ansD.getText().toString();
+                selectedButton = ansD;
+                ansD.setBackgroundColor(Color.GRAY);
+                ansA.setBackgroundColor(Color.TRANSPARENT);
+                ansB.setBackgroundColor(Color.TRANSPARENT);
+                ansC.setBackgroundColor(Color.TRANSPARENT);
+            }
+        });
+    }
+    void loadNewQuestion(){
+
+        selectedAnswer = "";
+        ansA.setBackgroundColor(Color.TRANSPARENT);
+        ansB.setBackgroundColor(Color.TRANSPARENT);
+        ansC.setBackgroundColor(Color.TRANSPARENT);
+        ansD.setBackgroundColor(Color.TRANSPARENT);
+        currentQuestionIndex++;
+
+        if(currentQuestionIndex == totalQuestion ){
+            finishQuiz();
+
+            return;
+        }
+
+        questionTextView.setText(QuizAns.questions[currentQuestionIndex]);
+        ansA.setText(QuizAns.choices[currentQuestionIndex][0]);
+        ansB.setText(QuizAns.choices[currentQuestionIndex][1]);
+        ansC.setText(QuizAns.choices[currentQuestionIndex][2]);
+        ansD.setText(QuizAns.choices[currentQuestionIndex][3]);
+
+
+    }
+
+    void finishQuiz(){
+        String passStatus = "";
+        if(score > totalQuestion*0.60){
+            passStatus = "Passed";
+        }else{
+            passStatus = "Failed";
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(passStatus)
+                .setMessage("Score is "+ score+" out of "+ totalQuestion)
+                .setCancelable(false)
+                .show();
+        new Handler().postDelayed(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(Quiz.this, Map.class));
+
+                    }
+                }, 600);
+
+
+
+    }
+}
+
+/*
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -12,7 +197,12 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class Quiz extends AppCompatActivity implements View.OnClickListener {
+import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.gms.common.SignInButton;
+
+import java.util.ArrayList;
+
+public class Quiz extends AppCompatActivity{
 
     RelativeLayout main_layout;
 
@@ -38,6 +228,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     public static int score = 60;
 
     String selectedAnswer = "";
+    Button selectedButton;
 
 
     @Override
@@ -46,59 +237,113 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_quiz);
         totalQuestionsTextView = findViewById(R.id.total_questions);
         questionsTextView = findViewById(R.id.question);
+
         ansAButton = findViewById(R.id.ans_a);
         ansBButton = findViewById(R.id.ans_b);
         ansCButton = findViewById(R.id.ans_c);
         ansDButton = findViewById(R.id.ans_d);
+        ArrayList<Button> Buttons = new ArrayList<>();
+
+        Buttons.add(ansAButton);
+        Buttons.add(ansBButton);
+        Buttons.add(ansCButton);
+        Buttons.add(ansDButton);
         main_layout = findViewById(R.id.main);
         okButton = findViewById(R.id.ok);
 
 
-        ansAButton.setOnClickListener(this);
-        ansBButton.setOnClickListener(this);
-        ansCButton.setOnClickListener(this);
-        ansDButton.setOnClickListener(this);
-        okButton.setOnClickListener(this);
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+        public void onClick(View v) {
+                if(selectedAnswer != ""){
+            if(selectedAnswer.equals(QuizAns.answers[currentQuestionIndex])){
+                score++;
+                selectedButton.setBackgroundColor(Color.GREEN);
+
+            }
+            else {
+                selectedButton.setBackgroundColor(Color.RED);
+                for(Button i:Buttons){
+                    if(i.getText().toString().equals(QuizAns.answers[currentQuestionIndex])){
+                    i.setBackgroundColor(Color.GREEN);
+                    }
+
+                }
+                new Handler().postDelayed(
+                        new Runnable() {
+                            @Override
+                        public void run() {
+                            loadNewQuestions();
+                        }
+                        }, 600);
+            }
+        }    }
+        });
+
+
+
+
+
+
+        ansAButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+        public void onClick(View v) {
+            selectedAnswer  = ansAButton.getText().toString();
+            selectedButton = ansAButton;
+            ansAButton.setBackgroundColor(Color.GRAY);
+            ansBButton.setBackgroundColor(Color.WHITE);
+            ansCButton.setBackgroundColor(Color.WHITE);
+            ansDButton.setBackgroundColor(Color.WHITE);    }
+        });
+
+        ansBButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedAnswer  = ansBButton.getText().toString();
+                selectedButton = ansBButton;
+                ansBButton.setBackgroundColor(Color.GRAY);
+                ansAButton.setBackgroundColor(Color.WHITE);
+                ansCButton.setBackgroundColor(Color.WHITE);
+                ansDButton.setBackgroundColor(Color.WHITE);    }
+        });
+
+        ansCButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedAnswer  = ansCButton.getText().toString();
+                selectedButton = ansCButton;
+                ansCButton.setBackgroundColor(Color.GRAY);
+                ansBButton.setBackgroundColor(Color.WHITE);
+                ansAButton.setBackgroundColor(Color.WHITE);
+                ansDButton.setBackgroundColor(Color.WHITE);    }
+        });
+
+        ansDButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedAnswer  = ansDButton.getText().toString();
+                selectedButton = ansDButton;
+                ansDButton.setBackgroundColor(Color.GRAY);
+                ansBButton.setBackgroundColor(Color.WHITE);
+                ansCButton.setBackgroundColor(Color.WHITE);
+                ansAButton.setBackgroundColor(Color.WHITE);    }
+        });
+
+
 
         totalQuestionsTextView.setText("Total questions " + totalQuestions);
 
         loadNewQuestions();
 
-    }
 
 
 
-    @SuppressLint("ResourceAsColor")
-    public void onClick (View view){
-        ansAButton.setBackgroundColor(Color.TRANSPARENT);
-        ansBButton.setBackgroundColor(Color.TRANSPARENT);
-        ansCButton.setBackgroundColor(Color.TRANSPARENT);
-        ansDButton.setBackgroundColor(Color.TRANSPARENT);
-
-        Button button = (Button)  view;
-        if(button.getId() == R.id.ok){
-            if (selectedAnswer.equals(QuizAns.answers[currentQuestionIndex])){
-                score++;
-                main_layout.setBackgroundColor(Color.GREEN);
-                delay(300);
-
-            }else {
-                main_layout.setBackgroundColor(Color.RED);
-                delay(300);
-            }
-            currentQuestionIndex++;
-            loadNewQuestions();
-
-        }else {
-            selectedAnswer = button.getText().toString();
-            button.setBackgroundColor(Color.YELLOW);
-        }
 
     }
 
     private void loadNewQuestions() {
         if (currentQuestionIndex == totalQuestions ) {
-            finishQuiz();
+
         }else {
             okButton.setBackgroundColor(Color.TRANSPARENT);
         }
@@ -107,7 +352,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
         if (currentQuestionIndex == totalQuestions){
             okButton.setEnabled(false);
-            finishQuiz();
+
 
             return;
         }
@@ -119,35 +364,10 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         ansDButton.setText(QuizAns.choices[currentQuestionIndex][3]);
     }
 
-    private  void finishQuiz () {
-
-
-
-        if (score > totalQuestions * 0.6){
-            compl = true;
-            Intent intent = new Intent(Quiz.this, Map.class);
-            startActivity(intent);
-
-        }else {
-            compl = false;
-            Intent intent = new Intent(Quiz.this, Map.class);
-            startActivity(intent);
-        }
-
 
 
     }
 
 
 
-    public void delay (int milliseconds){
-        new Handler().postDelayed(new Runnable() {
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void run() {
-                main_layout.setBackgroundColor(Color.TRANSPARENT);
-                main_layout.setBackgroundColor(Color.TRANSPARENT);
-            }
-        }, milliseconds);
-    }
-}
+}*/

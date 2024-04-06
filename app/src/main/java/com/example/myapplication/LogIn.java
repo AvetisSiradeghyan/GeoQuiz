@@ -55,13 +55,13 @@ public class LogIn extends AppCompatActivity {
                                   @Override
                                   public void onSuccess(AuthResult authResult) {
 
-                                      if (auth.getCurrentUser().isEmailVerified()) {
+
                                           Toast.makeText(LogIn.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                           startActivity(new Intent(LogIn.this, MainActivity.class));
                                           finish();
-                                      }else {
+
                                           Toast.makeText(LogIn.this, "Please Verify", Toast.LENGTH_SHORT).show();
-                                      }
+
                                   }
                               }).addOnFailureListener(new OnFailureListener() {
                                   @Override

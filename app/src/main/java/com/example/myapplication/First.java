@@ -19,6 +19,8 @@ import java.util.TimerTask;
 public class First extends AppCompatActivity {
 
     int counter = 0;
+
+    Button quiz_button;
     ProgressBar pb;
     Button btn;
 
@@ -33,15 +35,23 @@ public class First extends AppCompatActivity {
         ImageSlider imageSlider = findViewById(R.id.imageSlider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
 
-        slideModels.add(new SlideModel(R.drawable.back, ScaleTypes.FIT));
-        slideModels.add(new SlideModel(R.drawable.logo, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.vanadzor1, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.vanadzor2, ScaleTypes.FIT));
 
-        slideModels.add(new SlideModel(R.drawable.map, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.vanadzor3, ScaleTypes.FIT));
 
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
 
 
+        quiz_button = findViewById(R.id.quiz_button);
+
+        quiz_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(First.this, Quiz.class));
+            }
+        });
 
 
     }
