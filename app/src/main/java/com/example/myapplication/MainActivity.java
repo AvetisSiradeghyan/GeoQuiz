@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity  {
         guest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Menu.class));
+                startActivity(new Intent(MainActivity.this, Map.class));
             }
         });
 

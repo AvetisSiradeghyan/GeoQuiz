@@ -56,14 +56,15 @@ public class Quiz extends AppCompatActivity{
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ansA.setClickable(false);
+                ansB.setClickable(false);
+                ansC.setClickable(false);
+                ansD.setClickable(false);
                 if(selectedAnswer != ""){
                     if(selectedAnswer.equals(QuizAns.answers[currentQuestionIndex])){
                         score++;
                         selectedButton.setBackgroundColor(Color.GREEN);
-                        ansA.setClickable(false);
-                        ansB.setClickable(false);
-                        ansC.setClickable(false);
-                        ansD.setClickable(false);
+
 
                         new Handler().postDelayed(
                                 new Runnable() {
@@ -72,10 +73,7 @@ public class Quiz extends AppCompatActivity{
                                         loadNewQuestion();
                                     }
                                 }, 600);
-                        ansA.setClickable(true);
-                        ansB.setClickable(true);
-                        ansC.setClickable(true);
-                        ansD.setClickable(true);
+
                     }
                     else {
 
@@ -144,6 +142,11 @@ public class Quiz extends AppCompatActivity{
     }
     void loadNewQuestion(){
 
+        ansA.setClickable(true);
+        ansB.setClickable(true);
+        ansC.setClickable(true);
+        ansD.setClickable(true);
+
         selectedAnswer = "";
         ansA.setBackgroundColor(Color.TRANSPARENT);
         ansB.setBackgroundColor(Color.TRANSPARENT);
@@ -168,7 +171,7 @@ public class Quiz extends AppCompatActivity{
 
     void finishQuiz(){
         String passStatus = "";
-        if(score > totalQuestion*0.60){
+        if(score > totalQuestion*0.50){
             passStatus = "Passed";
         }else{
             passStatus = "Failed";

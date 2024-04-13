@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,12 +13,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class Registration extends AppCompatActivity {
 
+    public static final String Tag = "Tag";
     private String pass;
     private FirebaseAuth auth;
     private EditText signupEmail, signupPassword, conf;
@@ -45,10 +53,10 @@ public class Registration extends AppCompatActivity {
                 String user = signupEmail.getText().toString().trim();
                 String pass = signupPassword.getText().toString().trim();
                 if (conf.getText().toString().equals(signupPassword.getText().toString())) {
-                    isValid = false;
+                    isValid = true;
                 }
                 else {
-                    isValid = true;
+                    isValid = false;
                     Toast.makeText(Registration.this, "Password doesnot match", Toast.LENGTH_SHORT).show();
                 }
 
@@ -70,7 +78,18 @@ public class Registration extends AppCompatActivity {
 
 
 
+                                    Objects.requireNonNull(auth.getCurrentUser()).sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override    public void onSuccess(Void aVoid) {
+                                    Toast.makeText(Registration.this, "Verification code has been  Sent", Toast.LENGTH_SHORT).show();
+                                }}).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(Tag, "onFailure: email not sent" + e.getMessage());
+                                }
+                            });
+
                         }
+
                     });
                 }
             }
