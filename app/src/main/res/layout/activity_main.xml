@@ -36,17 +36,7 @@
         android:backgroundTint="@color/btns"
         />
 
-    <Button
-        android:id="@+id/guest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="@color/btns"
-        android:text="Guest Mode"
-        />
+
 
     <Button
         android:id="@+id/login"

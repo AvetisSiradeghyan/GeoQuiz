@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+
+    tools:context=".Dilijan">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Դիլիջան"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:textStyle="bold"/>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            app:cardElevation="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop = "30dp"
+            app:cardCornerRadius="20dp">
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageSlider"
+                app:iss_period="2500"
+                app:iss_auto_cycle="true"
+                app:iss_delay="2500"
+                app:iss_corner_radius="20"
+                >
+
+
+            </com.denzcoskun.imageslider.ImageSlider>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:padding="20dp"
+            android:text="Հանդիսանում է Հայաստանի երրորդ խոշորագույն քաղաքը՝ մայրաքաղաք Երևանից և Գյումրուց հետո և Լոռու մարզի սոցիալ-տնտեսական, քաղաքական կենտրոնը։
+
+Վանաձոր քաղաքի թաղամասերն են՝ Դիմաց, Բազում, Ջունգլիներ, Քիմգործարան, և այլն:
+Վանաձոր քաղաքի համայնքային ենթակայության ներքո գտնվող ճանապարհների երկարությունը կազմում է 161 կմ։ Վանաձորով է անցնում հարավկովկասյան երկաթգիծը։ Դեպի արևմուտք գնացող գիծը Գյումրիով դուրս է գալիս Երևան, իսկ արևելք գնացող գիծը Սանահին կայարանով հասնում Թբիլիսի։"
+            android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/quiz_button"
+            android:textSize="18sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/yellow"
+            android:text="Quiz"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+
+            />
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+

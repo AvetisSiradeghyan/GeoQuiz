@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,13 +24,19 @@ import java.util.ArrayList;
 
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
+
+
     float zoomLevel = 7;
     private GoogleMap map;
     ArrayList<LatLng> arrayList = new ArrayList<>();
 
     LatLng zoom = new LatLng(40, 44.8);
     LatLng Vanadzor = new LatLng(40.81450196869515, 44.48257323317036);
+    LatLng Yerevan = new LatLng(40.177200, 44.503490);
+    LatLng Gyumri = new LatLng(40.7929026, 43.8464971);
+    LatLng Dilijan = new LatLng(40.7545444,44.8989488 );
     ArrayList<String> title = new ArrayList<String>();
+
 
 
 
@@ -40,11 +47,18 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         arrayList.add(Vanadzor);
+        arrayList.add(Yerevan);
+        arrayList.add(Gyumri);
+        arrayList.add(Dilijan);
 
         title.add("Vanadzor");
+        title.add("Yerevan");
+        title.add("Gyumri");
+        title.add("Dilijan");
 
 
     }

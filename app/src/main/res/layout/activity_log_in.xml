@@ -9,11 +9,11 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_height="200dp"
+        android:layout_marginTop="30dp"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
-        app:lottie_rawRes="@raw/login"/>
+        app:lottie_rawRes="@raw/login" />
 
 
     <androidx.cardview.widget.CardView
@@ -48,18 +48,21 @@
                 android:id="@+id/login_email"
                 android:background="@drawable/custom_edittext"
                 android:layout_marginTop="20dp"
-                android:padding="15dp"
+                android:padding="8dp"
+                android:textSize="15dp"
                 android:hint="Email"
                 android:textColor="@color/black"
                />
 
             <EditText
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/login_password"
                 android:background="@drawable/custom_edittext"
                 android:layout_marginTop="20dp"
-                android:padding="15dp"
+                android:padding="8dp"
+                android:textSize="15dp"
                 android:hint="Password"
                 android:textColor="@color/black"
                 />

@@ -180,7 +180,7 @@ public class Quiz extends AppCompatActivity{
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage("Score is "+ score+" out of "+ totalQuestion)
-                .setCancelable(false)
+                .setCancelable(true)
                 .show();
         new Handler().postDelayed(
                 new Runnable() {

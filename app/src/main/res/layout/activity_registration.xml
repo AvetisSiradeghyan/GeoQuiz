@@ -54,32 +54,39 @@
                     android:id="@+id/signup_email"
                     android:background="@drawable/custom_edittext"
                     android:layout_marginTop="20dp"
-                    android:padding="5dp"
+                    android:padding="8dp"
+                    android:textSize="15dp"
                     android:hint="Email"
                     android:textColor="@color/black"
                     />
-
                 <EditText
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:id="@+id/signup_password"
                     android:background="@drawable/custom_edittext"
                     android:layout_marginTop="20dp"
-                    android:padding="5dp"
+                    android:padding="8dp"
+                    android:textSize="15dp"
                     android:hint="Password"
                     android:textColor="@color/black"
                     />
 
                 <EditText
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:id="@+id/signup_passwordconf"
                     android:background="@drawable/custom_edittext"
                     android:layout_marginTop="20dp"
-                    android:padding="5dp"
+                    android:padding="8dp"
+                    android:textSize="15dp"
                     android:hint="Confirm your password"
                     android:textColor="@color/black"
                     />
+
+
+
 
 
                 <Button
