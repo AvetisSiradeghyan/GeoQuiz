@@ -43,11 +43,11 @@ public class Dilijan extends AppCompatActivity {
         quiz_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(First.this, Quiz.class));
+                startActivity(new Intent(Dilijan.this, Quiz.class));
             }
         });
 
 
     }
+
     }
-}

@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
     <TextView
+        android:id="@+id/title_town"
         android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,15 +53,13 @@
 
 
         <TextView
+            android:id="@+id/info_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:padding="20dp"
             android:textSize="25dp"
-            android:text="Հանդիսանում է Հայաստանի երրորդ խոշորագույն քաղաքը՝ մայրաքաղաք Երևանից և Գյումրուց հետո և Լոռու մարզի սոցիալ-տնտեսական, քաղաքական կենտրոնը։
-
-Վանաձոր քաղաքի թաղամասերն են՝ Դիմաց, Բազում, Ջունգլիներ, Քիմգործարան, և այլն:
-Վանաձոր քաղաքի համայնքային ենթակայության ներքո գտնվող ճանապարհների երկարությունը կազմում է 161 կմ։ Վանաձորով է անցնում հարավկովկասյան երկաթգիծը։ Դեպի արևմուտք գնացող գիծը Գյումրիով դուրս է գալիս Երևան, իսկ արևելք գնացող գիծը Սանահին կայարանով հասնում Թբիլիսի։"/>
+            android:text="Text"/>
 
         <Button
             android:id="@+id/quiz_button"

@@ -2,110 +2,122 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.android.identity.android.legacy.Utility;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
-
+import com.google.firebase.auth.FirebaseUser;
 
 public class LogIn extends AppCompatActivity {
 
-    public static final String Tag = "Tag";
+    EditText Email;
+    EditText Password;
+    ConstraintLayout LogIn;
+    FirebaseUser mUser;
+    private FirebaseAuth mAuth;
 
-    public static boolean user = false;
-    private FirebaseAuth auth;
-    private EditText loginEmail, loginPassword;
-    private Button loginButton;
-    private TextView signupRedirectText;
+    private static final String TAG = "EmailPassword";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        
-      auth = FirebaseAuth.getInstance();
-      loginPassword = findViewById(R.id.login_password);
-      loginEmail = findViewById(R.id.login_email);
-      loginButton = findViewById(R.id.login_button);
-      signupRedirectText = findViewById(R.id.signupRedirectText);
 
-      loginButton.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              String email = loginEmail.getText().toString();
-              String pass = loginPassword.getText().toString();
+        LogIn = findViewById(R.id.LogIn);
 
-              if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                  if (!pass.isEmpty()){
-                      user = true;
-                      auth.signInWithEmailAndPassword(email, pass)
-                              .addOnSuccessListener(new OnSuccessListener<AuthResult>()
+        Email = findViewById(R.id.Email);
+        Password  = findViewById(R.id.Password);
 
-                              {
-                                  @Override
-                                  public void onSuccess(AuthResult authResult) {
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
+        if(mUser != null){
+            Intent intent = new Intent(LogIn.this, Map.class);
+            startActivity(intent);
+        }
 
-                                      if (Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()) {
-                                          Toast.makeText(LogIn.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                          startActivity(new Intent(LogIn.this, MainActivity.class));
-                                          finish();
-                                      }else {
-                                          Toast.makeText(LogIn.this, "Please Verify", Toast.LENGTH_SHORT).show();
-                                          auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                              @Override    public void onSuccess(Void aVoid) {
-                                                  Toast.makeText(LogIn.this, "Verification code has been  Sent", Toast.LENGTH_SHORT).show();
-                                              }}).addOnFailureListener(new OnFailureListener() {
-                                              @Override
-                                              public void onFailure(@NonNull Exception e) {
-                                                  Log.d(Tag, "onFailure: email not sent" + e.getMessage());
-                                              }
-                                          });
-                                      }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            currentUser.reload();
+        }
+    }
 
 
-                                  }
-                              }).addOnFailureListener(new OnFailureListener() {
-                                  @Override
-                                  public void onFailure(@NonNull Exception e) {
-                                      Toast.makeText(LogIn.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                                  }
-                              });
-                  }else {
-                      loginPassword.setError("Password cannot be empty");
-                  }
-              } else if (email.isEmpty()) {
-                  loginEmail.setError("Email cannot be empty");
-              }else {
-                  loginEmail.setError("Please enter valid email");
-              }
-          }
-      });
+    public void setLogIn(View view){
+        String email = Email.getText().toString();
+        String password = Password.getText().toString();
 
+        boolean isValidated = validateData(email, password);
+        if(!isValidated){
+            return;
+        }else {
+            loginAccountInFirebase(email, password);
+        }
+    }
 
-        signupRedirectText.setOnClickListener(new View.OnClickListener() {
+    boolean validateData(String email, String password){
+        // validate the data that are input by user
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            Email.setError("Email is invalid");
+            return false;
+        }
+        if (password.length() < 6){
+            Password.setError("Password length is invalid");
+            return false;
+        }
+        return true;
+    }
+
+    void loginAccountInFirebase(String email, String password){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LogIn.this, Registration.class));
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    // login is success
+                    if (firebaseAuth.getCurrentUser().isEmailVerified()){
+                        //go to mainActivity
+                        startActivity(new Intent(LogIn.this, MainActivity.class));
+                        finish();
+                    } else{
+                        Toast.makeText(LogIn.this, "Email not verified, Please verify your email.", Toast.LENGTH_SHORT).show();
+                    }
+                } else{
+                    // login failed
+                    Toast.makeText(LogIn.this, "" + task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
+    }
 
 
 
+
+
+    public void SignUp(View view) {
+        Intent intent = new Intent(LogIn.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

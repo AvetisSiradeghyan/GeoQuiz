@@ -19,6 +19,12 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -36,6 +42,8 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
     LatLng Gyumri = new LatLng(40.7929026, 43.8464971);
     LatLng Dilijan = new LatLng(40.7545444,44.8989488 );
     ArrayList<String> title = new ArrayList<String>();
+    FirebaseUser mUser;
+    ArrayList<Map_Model> map_model = new ArrayList<>();
 
 
 
@@ -48,17 +56,33 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_map);
 
 
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            mUser = extras.getParcelable("auth");
+        }
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        arrayList.add(Vanadzor);
-        arrayList.add(Yerevan);
-        arrayList.add(Gyumri);
-        arrayList.add(Dilijan);
 
-        title.add("Vanadzor");
-        title.add("Yerevan");
-        title.add("Gyumri");
-        title.add("Dilijan");
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null){
+            FirebaseFirestore.getInstance().collection("Quiz")
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                                map_model.add(new Map_Model(queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getDouble("Lat"), queryDocumentSnapshot.getDouble("Lng")));
+                            }
+                            mapFragment.getMapAsync(Map.this);
+
+
+                        }
+                    });
+        }
+
+
+
+
 
 
     }
@@ -66,11 +90,10 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
-        for (int i = 0; i<arrayList.size(); i++){
-            for (int j = 0; j<title.size(); j++){
-                map.addMarker(new MarkerOptions().position(arrayList.get(i)).title(String.valueOf(title.get(j))));
-            }
-            map.moveCamera(CameraUpdateFactory.newLatLng(arrayList.get(i)));
+        for (int i = 0; i<map_model.size(); i++){
+                LatLng latLng = new LatLng(map_model.get(i).Lat, map_model.get(i).Lng);
+                map.addMarker(new MarkerOptions().position(latLng).title(map_model.get(i).Town));
+                map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         }
 
 
@@ -79,6 +102,8 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
                 String markertitle = marker.getTitle();
+
+
 
                 Intent i = new Intent(Map.this, First.class);
                 i.putExtra("title", markertitle);

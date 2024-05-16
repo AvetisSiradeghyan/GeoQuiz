@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -20,7 +21,9 @@ public class MainActivity extends AppCompatActivity  {
     private FirebaseAuth auth;
     Button log;
 
-    private boolean user = LogIn.user;
+    Button guest;
+
+    FirebaseUser mUser;
     Button play;
     Button reg;
 
@@ -31,6 +34,11 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
 
 
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            mUser = extras.getParcelable("auth");
+        }
+
 
         auth = FirebaseAuth.getInstance();
 
@@ -40,12 +48,21 @@ public class MainActivity extends AppCompatActivity  {
 
         play = (Button) findViewById(R.id.button);
 
+        guest = (Button) findViewById(R.id.guest);
 
+
+        guest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent g = new Intent(MainActivity.this, Map.class);
+                startActivity(g);
+            }
+        });
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (user == true) {
+                if (mUser != null) {
                     Intent intentL = new Intent(MainActivity.this, Map.class);
                     startActivity(intentL);
                 }else {
