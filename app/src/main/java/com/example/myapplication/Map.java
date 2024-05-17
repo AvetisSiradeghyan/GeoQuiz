@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
 
+    Button profile;
 
     float zoomLevel = 7;
     private GoogleMap map;
@@ -50,11 +52,13 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+//        profile = findViewById(R.id.profile);
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){

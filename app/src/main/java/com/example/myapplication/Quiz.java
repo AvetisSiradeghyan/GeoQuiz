@@ -13,6 +13,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 
 public class Quiz extends AppCompatActivity{
@@ -29,10 +36,39 @@ public class Quiz extends AppCompatActivity{
     String selectedAnswer = "";
     Button selectedButton;
 
+//    String town;
+//
+//     String choices [] = new String[4];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+//        Bundle extras = getIntent().getExtras();
+//        if(extras != null){
+//            town = extras.getString("title");
+//        }
+//
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        if(user != null){
+//
+//
+//            FirebaseFirestore.getInstance().collection("Quiz").whereEqualTo("Town", town)
+//                    .get()
+//                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                        @Override
+//                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                            for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+//                                choices = queryDocumentSnapshot.get("Choices");
+//
+//                            }
+//
+//
+//
+//                        }
+//                    });
+//        }
 
         totalQuestionsTextView = findViewById(R.id.total_questions);
         questionTextView = findViewById(R.id.question);
@@ -196,190 +232,3 @@ public class Quiz extends AppCompatActivity{
     }
 }
 
-/*
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.denzcoskun.imageslider.models.SlideModel;
-import com.google.android.gms.common.SignInButton;
-
-import java.util.ArrayList;
-
-public class Quiz extends AppCompatActivity{
-
-    RelativeLayout main_layout;
-
-    TextView totalQuestionsTextView;
-
-    TextView questionsTextView;
-
-    Button ansAButton;
-
-    Button ansBButton;
-
-    Button ansCButton;
-
-    Button ansDButton;
-
-    Button okButton;
-
-    int totalQuestions = QuizAns.questions.length;
-
-    int currentQuestionIndex = 0;
-
-    public static boolean compl = false;
-    public static int score = 60;
-
-    String selectedAnswer = "";
-    Button selectedButton;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
-        totalQuestionsTextView = findViewById(R.id.total_questions);
-        questionsTextView = findViewById(R.id.question);
-
-        ansAButton = findViewById(R.id.ans_a);
-        ansBButton = findViewById(R.id.ans_b);
-        ansCButton = findViewById(R.id.ans_c);
-        ansDButton = findViewById(R.id.ans_d);
-        ArrayList<Button> Buttons = new ArrayList<>();
-
-        Buttons.add(ansAButton);
-        Buttons.add(ansBButton);
-        Buttons.add(ansCButton);
-        Buttons.add(ansDButton);
-        main_layout = findViewById(R.id.main);
-        okButton = findViewById(R.id.ok);
-
-
-        okButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-        public void onClick(View v) {
-                if(selectedAnswer != ""){
-            if(selectedAnswer.equals(QuizAns.answers[currentQuestionIndex])){
-                score++;
-                selectedButton.setBackgroundColor(Color.GREEN);
-
-            }
-            else {
-                selectedButton.setBackgroundColor(Color.RED);
-                for(Button i:Buttons){
-                    if(i.getText().toString().equals(QuizAns.answers[currentQuestionIndex])){
-                    i.setBackgroundColor(Color.GREEN);
-                    }
-
-                }
-                new Handler().postDelayed(
-                        new Runnable() {
-                            @Override
-                        public void run() {
-                            loadNewQuestions();
-                        }
-                        }, 600);
-            }
-        }    }
-        });
-
-
-
-
-
-
-        ansAButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-        public void onClick(View v) {
-            selectedAnswer  = ansAButton.getText().toString();
-            selectedButton = ansAButton;
-            ansAButton.setBackgroundColor(Color.GRAY);
-            ansBButton.setBackgroundColor(Color.WHITE);
-            ansCButton.setBackgroundColor(Color.WHITE);
-            ansDButton.setBackgroundColor(Color.WHITE);    }
-        });
-
-        ansBButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedAnswer  = ansBButton.getText().toString();
-                selectedButton = ansBButton;
-                ansBButton.setBackgroundColor(Color.GRAY);
-                ansAButton.setBackgroundColor(Color.WHITE);
-                ansCButton.setBackgroundColor(Color.WHITE);
-                ansDButton.setBackgroundColor(Color.WHITE);    }
-        });
-
-        ansCButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedAnswer  = ansCButton.getText().toString();
-                selectedButton = ansCButton;
-                ansCButton.setBackgroundColor(Color.GRAY);
-                ansBButton.setBackgroundColor(Color.WHITE);
-                ansAButton.setBackgroundColor(Color.WHITE);
-                ansDButton.setBackgroundColor(Color.WHITE);    }
-        });
-
-        ansDButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedAnswer  = ansDButton.getText().toString();
-                selectedButton = ansDButton;
-                ansDButton.setBackgroundColor(Color.GRAY);
-                ansBButton.setBackgroundColor(Color.WHITE);
-                ansCButton.setBackgroundColor(Color.WHITE);
-                ansAButton.setBackgroundColor(Color.WHITE);    }
-        });
-
-
-
-        totalQuestionsTextView.setText("Total questions " + totalQuestions);
-
-        loadNewQuestions();
-
-
-
-
-
-    }
-
-    private void loadNewQuestions() {
-        if (currentQuestionIndex == totalQuestions ) {
-
-        }else {
-            okButton.setBackgroundColor(Color.TRANSPARENT);
-        }
-
-
-
-        if (currentQuestionIndex == totalQuestions){
-            okButton.setEnabled(false);
-
-
-            return;
-        }
-
-        questionsTextView.setText(QuizAns.questions[currentQuestionIndex]);
-        ansAButton.setText(QuizAns.choices[currentQuestionIndex][0]);
-        ansBButton.setText(QuizAns.choices[currentQuestionIndex][1]);
-        ansCButton.setText(QuizAns.choices[currentQuestionIndex][2]);
-        ansDButton.setText(QuizAns.choices[currentQuestionIndex][3]);
-    }
-
-
-
-    }
-
-
-
-}*/

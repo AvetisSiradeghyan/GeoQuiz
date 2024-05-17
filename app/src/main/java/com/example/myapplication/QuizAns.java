@@ -1,6 +1,51 @@
 package com.example.myapplication;
 
+import android.os.Bundle;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Map;
+
 public class QuizAns {
+
+
+//    String town;
+//    public QuizAns() {
+//        a();
+//    }
+//
+//    public void a() {
+//
+//        Bundle extras = getIntent().getExtras();
+//        if(extras != null){
+//            town = extras.getString("title");
+//        }
+//
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        if(user != null){
+//
+//
+//            FirebaseFirestore.getInstance().collection("Quiz").whereEqualTo("Town", town)
+//                    .get()
+//                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                        @Override
+//                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                            for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+//                                queryDocumentSnapshot.get("Choices", Map.class);
+//
+//                            }
+//
+//
+//
+//                        }
+//                    });
+//        }
+//    }
     public static String questions[] ={
 
             "Հայաստանի որերո՞րդ խոշորագույն քաղաքը է հանդիսանում",

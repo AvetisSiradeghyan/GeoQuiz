@@ -84,7 +84,9 @@ public class First extends AppCompatActivity {
         quiz_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(First.this, Quiz.class));
+                Intent i = new Intent(First.this, Quiz.class);
+                i.putExtra("title", title);
+                startActivity(i);
             }
         });
 
