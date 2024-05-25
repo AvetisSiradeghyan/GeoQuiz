@@ -1,14 +1,17 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -21,6 +24,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,6 +35,7 @@ import java.util.ArrayList;
 
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
+    LinearLayout bar;
 
     Button profile;
 
@@ -58,7 +63,21 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-//        profile = findViewById(R.id.profile);
+
+
+
+
+
+        bar = findViewById(R.id.bar);
+        profile = findViewById(R.id.profile);
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                bar.setVisibility(View.VISIBLE);
+            }
+        });
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
@@ -122,5 +141,31 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
 
         map.moveCamera(cameraUpdate);
+    }
+
+    public void signOut(View view) {
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(Map.this)
+                .setTitle("Sign Out")
+                .setPositiveButton("Sign Out", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(Map.this, LogIn.class);
+                        startActivity(intent);
+                        finish();
+
+
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).create();
+        alertDialog.show();
+
+
+
     }
 }

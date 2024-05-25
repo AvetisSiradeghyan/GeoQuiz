@@ -36,6 +36,40 @@ public class Quiz extends AppCompatActivity{
     String selectedAnswer = "";
     Button selectedButton;
 
+    String question1, question2, question3, question4, question5, ans1, ans2, ans3, ans4, ans5, choice1_1, choice1_2, choice1_3,
+    choice1_4, choice2_1, choice2_2, choice2_3, choice3_1, choice2_4, choice3_2, choice3_3, choice3_4, choice4_1, choice4_2, choice4_3
+    , choice4_4,choice5_1,choice5_2, choice5_3, choice5_4;
+    public String[] questions ={
+
+            question1,
+            question2,
+            question3,
+            question4,
+            question5
+
+
+    };
+
+    public String choices [][] = {
+            {choice1_1, choice1_2, choice1_3, choice1_4},
+            {choice2_1, choice2_2, choice2_3, choice2_4},
+            {choice3_1, choice3_2, choice3_3, choice3_4},
+            {choice4_1, choice4_2, choice4_3, choice4_4},
+            {choice5_1, choice5_2, choice5_3, choice5_4},
+
+    };
+
+    public String answers [] = {
+            ans1,
+            ans2,
+            ans3,
+            ans4,
+            ans5,
+
+
+
+    };
+
 //    String town;
 //
 //     String choices [] = new String[4];
