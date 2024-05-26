@@ -8,10 +8,12 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,6 +27,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,6 +39,8 @@ import java.util.ArrayList;
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
     LinearLayout bar;
+
+//    public static boolean compl = Quiz.compl;
 
     Button profile;
 
@@ -54,7 +59,10 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
 
 
+    String Task_text = "Task";
 
+
+    View view1;
 
 
 
@@ -168,4 +176,50 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
 
     }
+
+    public void add_quiz(View view) {
+
+        view1 = LayoutInflater.from(Map.this).inflate(R.layout.add_quiz, null);
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(Map.this)
+                .setTitle("Add Task")
+                .setView(view1)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+
+
+                    }
+                }).setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).create();
+        alertDialog.show();
+
+    }
+
+//    public void edittext(View view) {
+//        View view2 = LayoutInflater.from(Map.this).inflate(R.layout.input_text_dialog_layout, null);
+//        TextInputEditText editText = view2.findViewById(R.id.edittext);
+//        TextView task_text = view1.findViewById(R.id.Task_text_View);
+//        AlertDialog alertDialog = new MaterialAlertDialogBuilder(Map.this)
+//                .setTitle("Title")
+//                .setView(view2)
+//                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        Task_text = String.valueOf(editText.getText());
+//                        task_text.setText(Task_text);
+//                        dialogInterface.dismiss();
+//                    }
+//                }).setNegativeButton("Close", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        dialogInterface.dismiss();
+//                    }
+//                }).create();
+//        alertDialog.show();
+//    }
 }

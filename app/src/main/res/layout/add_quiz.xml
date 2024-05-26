@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Map"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:id="@+id/inform"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+android:layout_marginBottom="50dp"
+                android:background="@drawable/custom_edittext"
+                android:hint="Information"
+                />
+
+
+            <EditText
+                android:inputType="text"
+                android:background="@drawable/custom_edittext"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:id="@+id/question1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Question1"
+                android:layout_marginBottom="20dp"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:background="@drawable/custom_edittext"
+                android:textAlignment="center"
+                android:id="@+id/choice1.1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:hint="Choices of question1"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice1.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question1"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice1.3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question1"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice1.4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question1"
+                android:layout_marginBottom="20dp"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:background="@drawable/custom_edittext"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:id="@+id/question2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Question2"
+                android:layout_marginBottom="20dp"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:background="@drawable/custom_edittext"
+                android:textAlignment="center"
+                android:id="@+id/choice2.1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:hint="Choices of question2"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice2.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question2"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice2.3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question2"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice2.4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question2"
+                android:layout_marginBottom="20dp"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:background="@drawable/custom_edittext"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:id="@+id/question3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Question3"
+                android:layout_marginBottom="20dp"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:background="@drawable/custom_edittext"
+                android:textAlignment="center"
+                android:id="@+id/choice3.1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:hint="Choices of question3"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice3.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question3"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice3.3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question3"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice3.4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question3"
+                android:layout_marginBottom="20dp"
+                />
+
+
+
+            <EditText
+                android:inputType="text"
+                android:background="@drawable/custom_edittext"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:id="@+id/question4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Question4"
+                android:layout_marginBottom="20dp"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:background="@drawable/custom_edittext"
+                android:textAlignment="center"
+                android:id="@+id/choice4.1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:hint="Choices of question4"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice4.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question4"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice4.3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question4"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice4.4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question4"
+                android:layout_marginBottom="20dp"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:background="@drawable/custom_edittext"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:id="@+id/question5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Question5"
+                android:layout_marginBottom="20dp"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:background="@drawable/custom_edittext"
+                android:textAlignment="center"
+                android:id="@+id/choice5.1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:hint="Choices of question5"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice5.2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question5"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice5.3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question5"
+                />
+
+            <EditText
+                android:inputType="text"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:background="@drawable/custom_edittext"
+                android:id="@+id/choice5.4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Choices of question5"
+                android:layout_marginBottom="20dp"
+                />
+
+
+
+    </LinearLayout>
+
+</ScrollView>
