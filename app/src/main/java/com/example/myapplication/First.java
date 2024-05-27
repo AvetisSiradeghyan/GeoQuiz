@@ -95,14 +95,11 @@ public class First extends AppCompatActivity {
         quiz_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!Quiz.compl) {
                     Quiz.currentQuestionIndex = -1;
                     Intent i = new Intent(First.this, Quiz.class);
                     i.putExtra("title", title);
                     startActivity(i);
-                }else {
-                    Toast.makeText(First.this, "You already completed this quiz", Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
 

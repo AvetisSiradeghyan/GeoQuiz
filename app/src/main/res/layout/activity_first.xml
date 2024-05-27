@@ -22,14 +22,14 @@
         android:text="Վանաձոր"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="50dp"
+        android:textSize="120dp"
         android:textStyle="bold"/>
 
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_width="700dp"
+        android:layout_height="600dp"
         app:cardElevation="20dp"
         android:layout_gravity="center"
         android:layout_marginTop = "30dp"
@@ -58,15 +58,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:padding="20dp"
-            android:textSize="25dp"
+            android:textSize="30dp"
             android:text="Text"/>
 
         <Button
             android:id="@+id/quiz_button"
-            android:textSize="18sp"
-
+            android:textSize="30dp"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="90dp"
             android:layout_gravity="bottom"
             android:backgroundTint="@color/yellow"
             android:text="Quiz"

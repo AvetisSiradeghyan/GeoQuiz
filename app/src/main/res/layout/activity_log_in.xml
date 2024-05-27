@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:textColor="@color/black"
-        android:textSize="45sp"
+        android:textSize="120dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,7 @@
         android:textStyle="bold"
         android:text="Sign in to continue"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +54,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="E-Mail"
-            android:textColor="@color/black"
             android:layout_gravity="center"
-            android:textSize="17dp"
+            android:textColor="@color/black"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
 
@@ -63,34 +64,34 @@
             android:id="@+id/Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
             android:ems="10"
             android:background="@drawable/custom_edittext"
             android:hint="  example@email.com"
             android:inputType="textEmailAddress"
-            android:padding="5dp" />
+            android:layout_marginTop="30dp"
+            android:padding="20dp" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
             android:text="Password"
             android:textColor="@color/black"
             android:layout_gravity="center"
-            android:textSize="17dp"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
             android:ems="10"
-            android:background="@drawable/custom_edittext"
+            android:layout_marginTop="30dp"
             android:hint="  Password"
+            android:background="@drawable/custom_edittext"
             android:inputType="textPassword"
-            android:padding="5dp" />
+            android:padding="20dp" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -129,11 +130,14 @@
             android:orientation="horizontal">
 
             <TextView
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:paddingBottom="20dp"
+                android:textSize="20dp"
                 android:text="Don't have an account ? "
-                android:textColor="@color/black" />
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -141,7 +145,10 @@
                 android:layout_marginStart="6dp"
                 android:paddingBottom="20dp"
                 android:onClick="SignUp"
-                android:text="Create Account" />
+                android:text="Create Account"
+                android:textSize="20dp"
+                android:textStyle="bold|italic"
+/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

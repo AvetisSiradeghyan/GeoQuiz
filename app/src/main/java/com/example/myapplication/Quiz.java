@@ -1,4 +1,5 @@
 package com.example.myapplication;
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import static kotlinx.coroutines.time.TimeKt.delay;
 
 import android.app.AlertDialog;
@@ -6,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,10 +19,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -36,8 +41,10 @@ public class Quiz extends AppCompatActivity{
     TextView questionTextView;
     Button ansA, ansB, ansC, ansD;
     Button submitBtn;
-    String id = UUID.randomUUID().toString();
+//    String id = UUID.randomUUID().toString();
+//    int Position_BackUp;
 
+//    ArrayList<Quiz_Model> Quiz_Model = new ArrayList<>();
 
     public static boolean compl;
     public static int compled = 0;
@@ -49,6 +56,7 @@ public class Quiz extends AppCompatActivity{
     String selectedAnswer = "";
     Button selectedButton;
     String title;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,41 +259,111 @@ public class Quiz extends AppCompatActivity{
                 .setMessage("Score is "+ score_visible+" out of "+ totalQuestion)
                 .setCancelable(true)
                 .show();
-
-
-
-
-    }
-
-    public void finishfb(View view) {
-
-
-        String scorefb = String.valueOf(score);
-        String compledfb = String.valueOf(compled);
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("Score", scorefb);
-            hashMap.put("Completed", compledfb);
-            hashMap.put("UserId", user.getUid());
-            db.collection("daysModel").document(id).set(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
-                }
-
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            //db.collection("daysModel").document("daysModelId").collection("tasks").add(hashMap);
-        }
+        new Handler().postDelayed(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        loadNewQuestion();
+                    }
+                }, 600);
         startActivity(new Intent(Quiz.this, Map.class));
+
+
+
+
     }
+
+//    public void finishfb(View view) {
+//        if (score == 0){
+//
+//        String scorefb = String.valueOf(score);
+//        String compledfb = String.valueOf(compled);
+//
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        if (user != null) {
+//
+//            DocumentReference docRef = db.collection("yourCollection").document(id);
+//
+//            // Delete the document
+//            docRef.delete()
+//                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if (task.isSuccessful()) {
+//                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
+//                            } else {
+//                                Log.w(TAG, "Error deleting document", task.getException());
+//                            }
+//                        }
+//                    });
+//
+//            HashMap<String, Object> hashMap = new HashMap<>();
+//            hashMap.put("Score", scorefb);
+//            hashMap.put("Completed", compledfb);
+//            hashMap.put("UserId", user.getUid());
+//            db.collection("daysModel").document(id).set(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                @Override
+//                public void onSuccess(Void unused) {
+//                    Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//
+//            //db.collection("daysModel").document("daysModelId").collection("tasks").add(hashMap);
+//        }
+//    }else {
+//            Change_Quiz_In_Model();
+//        }
+//
+//    }
+//
+//
+//    private void Change_Quiz_In_Model() {
+//        String idNew = UUID.randomUUID().toString();
+//
+//
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        db.collection("daysModel").document(id).collection("taskModels").document(Quiz_Model.get(Position_BackUp).DocId).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+//            @Override
+//            public void onSuccess(Void unused) {
+//
+//                    Quiz_Model.set(Position_BackUp, new Quiz_Model(score, compled, idNew));
+//
+//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                    if (user != null) {
+//                        HashMap<String, Object> hashMap = new HashMap<>();
+//                        hashMap.put("Score", String.valueOf(score));
+//                        hashMap.put("Completed", String.valueOf(compled));
+//                        hashMap.put("DocID", idNew);
+//                        hashMap.put("userId", user.getUid());
+//                        db.collection("daysModel").document(Quiz_Model.get(Position_BackUp).DocId).set(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void unused) {
+//                                Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//
+//                        //db.collection("daysModel").document("daysModelId").collection("taskModels").add(hashMap);
+//                    }
+//
+//                }
+//
+//
+//
+//        });
+//
+//
+//    }
 }
 

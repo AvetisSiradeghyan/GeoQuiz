@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Total Questions"
-        android:textSize="30dp" />
+        android:textSize="60dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/question"
@@ -24,7 +25,7 @@
         android:layout_centerHorizontal="true"
         android:text="Question"
         android:textStyle="bold"
-        android:textSize="30dp"
+        android:textSize="80dp"
         android:layout_above="@id/linear_layout"
         />
 
@@ -44,7 +45,7 @@
             android:layout_margin="10dp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="60dp"
             android:text="A" />
 
         <Button
@@ -55,7 +56,8 @@
             android:layout_margin="10dp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="60dp"
+            android:layout_marginTop="50dp"
             android:text="B" />
 
         <Button
@@ -66,7 +68,8 @@
             android:layout_margin="10dp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="60dp"
+            android:layout_marginTop="50dp"
             android:text="C" />
 
         <Button
@@ -75,9 +78,10 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/yellow"
             android:layout_margin="10dp"
+            android:layout_marginTop="50dp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="60dp"
             android:text="D" />
     </LinearLayout>
 
@@ -88,7 +92,7 @@
         android:layout_centerHorizontal="true"
         android:text="______________________"
         android:textStyle="bold"
-        android:textSize="30dp"
+        android:textSize="60dp"
 
         android:layout_below="@id/linear_layout" />
 
@@ -100,32 +104,17 @@
         android:layout_below="@id/linear_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="60dp"
-
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="60dp"
         android:backgroundTint="@color/green"
         android:text="OK"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="80dp"
         android:textStyle="bold" />
 
 
-        <Button
-            android:id="@+id/fb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linear_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginBottom="60dp"
-            android:backgroundTint="@color/green"
-            android:text="Finish"
-            android:onClick="finishfb"
-            android:textColor="@color/black"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+
 
 
 

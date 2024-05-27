@@ -43,6 +43,8 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
     LinearLayout bar;
     int score = Quiz.score;
 
+
+
 //    public static boolean compl = Quiz.compl;
 
     Button profile;
@@ -67,7 +69,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
     View view1;
 
-    TextView total_score_view;
+    TextView total_score_view, average;
 
 
     @Override
@@ -76,43 +78,11 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_map);
 
 
-        bar = findViewById(R.id.bar);
+
         profile = findViewById(R.id.profile);
 
-        total_score_view = findViewById(R.id.total_score);
 
 
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (visibility == 0){
-                    bar.setVisibility(View.VISIBLE);
-
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if(user != null){
-                        FirebaseFirestore.getInstance().collection("daysModel").whereEqualTo("UserId", user.getUid())
-                                .get()
-                                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                        for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
-                                            total_score_view.setText(queryDocumentSnapshot.getString("Score"));
-                                        }
-
-
-
-                                    }
-                                });
-                    }
-
-                    visibility++;
-                }else {
-                    bar.setVisibility(View.GONE);
-                    visibility--;
-                }
-
-            }
-        });
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
