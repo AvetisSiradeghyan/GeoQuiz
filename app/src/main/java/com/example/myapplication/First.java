@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -71,10 +73,19 @@ public class First extends AppCompatActivity {
         ImageSlider imageSlider = findViewById(R.id.imageSlider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
 
-        slideModels.add(new SlideModel(R.drawable.vanadzor1, ScaleTypes.FIT));
-        slideModels.add(new SlideModel(R.drawable.vanadzor2, ScaleTypes.FIT));
-        slideModels.add(new SlideModel(R.drawable.vanadzor3, ScaleTypes.FIT));
 
+
+        if (Objects.equals(title, "Vanadzor")) {
+            slideModels.clear();
+            slideModels.add(new SlideModel(R.drawable.vanadzor1, ScaleTypes.FIT));
+            slideModels.add(new SlideModel(R.drawable.vanadzor2, ScaleTypes.FIT));
+            slideModels.add(new SlideModel(R.drawable.vanadzor3, ScaleTypes.FIT));
+        } else if (Objects.equals(title, "Dilijan")) {
+            slideModels.clear();
+            slideModels.add(new SlideModel(R.drawable.dilijan1, ScaleTypes.FIT));
+            slideModels.add(new SlideModel(R.drawable.dilijan2, ScaleTypes.FIT));
+            slideModels.add(new SlideModel(R.drawable.dilijan3, ScaleTypes.FIT));
+        }
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
 
@@ -84,9 +95,14 @@ public class First extends AppCompatActivity {
         quiz_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(First.this, Quiz.class);
-                i.putExtra("title", title);
-                startActivity(i);
+                if (!Quiz.compl) {
+                    Quiz.currentQuestionIndex = -1;
+                    Intent i = new Intent(First.this, Quiz.class);
+                    i.putExtra("title", title);
+                    startActivity(i);
+                }else {
+                    Toast.makeText(First.this, "You already completed this quiz", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

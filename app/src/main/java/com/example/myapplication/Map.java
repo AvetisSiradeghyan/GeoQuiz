@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,11 +41,12 @@ import java.util.ArrayList;
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
     LinearLayout bar;
+    int score = Quiz.score;
 
 //    public static boolean compl = Quiz.compl;
 
     Button profile;
-
+    int visibility = 0;
     float zoomLevel = 7;
     private GoogleMap map;
     ArrayList<LatLng> arrayList = new ArrayList<>();
@@ -64,6 +67,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
     View view1;
 
+    TextView total_score_view;
 
 
     @Override
@@ -72,18 +76,41 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_map);
 
 
-
-
-
-
         bar = findViewById(R.id.bar);
         profile = findViewById(R.id.profile);
+
+        total_score_view = findViewById(R.id.total_score);
+
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (visibility == 0){
+                    bar.setVisibility(View.VISIBLE);
 
-                bar.setVisibility(View.VISIBLE);
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if(user != null){
+                        FirebaseFirestore.getInstance().collection("daysModel").whereEqualTo("UserId", user.getUid())
+                                .get()
+                                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                        for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                                            total_score_view.setText(queryDocumentSnapshot.getString("Score"));
+                                        }
+
+
+
+                                    }
+                                });
+                    }
+
+                    visibility++;
+                }else {
+                    bar.setVisibility(View.GONE);
+                    visibility--;
+                }
+
             }
         });
 

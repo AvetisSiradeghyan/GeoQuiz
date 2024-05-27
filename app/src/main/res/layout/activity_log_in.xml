@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main"
     tools:context=".LogIn">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -24,7 +25,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="Sign in to continue"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -34,9 +35,12 @@
 
 
     <LinearLayout
+        android:padding="20dp"
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_edittext"
+        android:backgroundTint="@color/white"
         android:layout_marginHorizontal="22dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="E-Mail"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
             android:textSize="17dp"
             android:textStyle="bold" />
 
@@ -60,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
             android:ems="10"
+            android:background="@drawable/custom_edittext"
             android:hint="  example@email.com"
             android:inputType="textEmailAddress"
             android:padding="5dp" />
@@ -70,7 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Password"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
             android:textSize="17dp"
             android:textStyle="bold" />
 
@@ -80,6 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
             android:ems="10"
+            android:background="@drawable/custom_edittext"
             android:hint="  Password"
             android:inputType="textPassword"
             android:padding="5dp" />
@@ -91,13 +99,16 @@
             android:layout_height="65dp"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="15dp"
+            android:background="@drawable/custom_edittext"
+            android:backgroundTint="@color/main"
+
             android:onClick="setLogIn">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Log In"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -120,13 +131,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
                 android:text="Don't have an account ? "
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
+                android:paddingBottom="20dp"
                 android:onClick="SignUp"
                 android:text="Create Account" />
         </LinearLayout>

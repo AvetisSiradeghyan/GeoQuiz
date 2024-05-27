@@ -1,18 +1,6 @@
 package com.example.myapplication;
 
-import android.os.Bundle;
-
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.Map;
-
-public class QuizAns {
-
+public class QuizAnsDilijan {
 
 
     public static String[] questions ={
@@ -37,7 +25,7 @@ public class QuizAns {
     };
 
     public static String[] answers = {
-            "Երրորդ",
+            "Երկրորդ",
             "Լոռի",
             "Նորք Մարաշ",
             "161կմ",

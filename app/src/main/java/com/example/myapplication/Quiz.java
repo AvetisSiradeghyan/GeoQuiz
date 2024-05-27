@@ -11,11 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +26,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
+import java.util.UUID;
 
 public class Quiz extends AppCompatActivity{
 
@@ -31,90 +36,24 @@ public class Quiz extends AppCompatActivity{
     TextView questionTextView;
     Button ansA, ansB, ansC, ansD;
     Button submitBtn;
+    String id = UUID.randomUUID().toString();
 
-    int score=0;
 
-//    public static boolean compl = false;
+    public static boolean compl;
+    public static int compled = 0;
+    public static int score=0;
+    int score_visible=0;
 
-    int totalQuestion = 5;
-    static int currentQuestionIndex = 0;
+    int totalQuestion = QuizAns.questions.length;
+    static int currentQuestionIndex = -1;
     String selectedAnswer = "";
     Button selectedButton;
-
-//    String question1, question2, question3, question4, question5, ans1, ans2, ans3, ans4, ans5, choice1_1, choice1_2, choice1_3,
-//    choice1_4, choice2_1, choice2_2, choice2_3, choice3_1, choice2_4, choice3_2, choice3_3, choice3_4, choice4_1, choice4_2, choice4_3
-//    , choice4_4,choice5_1,choice5_2, choice5_3, choice5_4;
-//
-//    public String[] questions ={
-//
-//            question1,
-//            question2,
-//            question3,
-//            question4,
-//            question5
-//
-//
-//    };
-//
-//    public String choices [][] = {
-//            {choice1_1, choice1_2, choice1_3, choice1_4},
-//            {choice2_1, choice2_2, choice2_3, choice2_4},
-//            {choice3_1, choice3_2, choice3_3, choice3_4},
-//            {choice4_1, choice4_2, choice4_3, choice4_4},
-//            {choice5_1, choice5_2, choice5_3, choice5_4},
-//
-//    };
-//
-//    public String answers [] = {
-//            ans1,
-//            ans2,
-//            ans3,
-//            ans4,
-//            ans5,
-//
-//
-//
-//    };
-
     String title;
-//    String town;
-//
-//     String choices [] = new String[4];
-    String [] questions = new String[5];
-    String [][] choices = new String[5][4];
-    String [] answers = new String[5];
-
-    ArrayList<Quiz_Model> quiz_model = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
-//        Bundle extras = getIntent().getExtras();
-//        if(extras != null){
-//            town = extras.getString("title");
-//        }
-//
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        if(user != null){
-//
-//
-//            FirebaseFirestore.getInstance().collection("Quiz").whereEqualTo("Town", town)
-//                    .get()
-//                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                        @Override
-//                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                            for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
-//                                choices = queryDocumentSnapshot.get("Choices");
-//
-//                            }
-//
-//
-//
-//                        }
-//                    });
-        //}
 
         totalQuestionsTextView = findViewById(R.id.total_questions);
         questionTextView = findViewById(R.id.question);
@@ -135,76 +74,6 @@ public class Quiz extends AppCompatActivity{
             title = extras.getString("title");
         }
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user != null){
-            FirebaseFirestore.getInstance().collection("Quiz").whereEqualTo("Town", title)
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
-                                quiz_model.add(new Quiz_Model( queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town"), queryDocumentSnapshot.getString("Town")));
-//                                totalQuestionsTextView.setText(queryDocumentSnapshot.getString("Town"));
-//                                question1 = queryDocumentSnapshot.getString("Town");
-//                                Toast.makeText(Quiz.this, ""+question1, Toast.LENGTH_SHORT).show();
-//                                question2 = (queryDocumentSnapshot.getString("Town"));
-//                                question3 = (queryDocumentSnapshot.getString("Town"));
-//                                question4 = (queryDocumentSnapshot.getString("Town"));
-//                                question5 = (queryDocumentSnapshot.getString("Town"));
-//                                ans1 = (queryDocumentSnapshot.getString("Town"));
-//                                ans2 = (queryDocumentSnapshot.getString("Town"));
-//                                ans3 = (queryDocumentSnapshot.getString("Town"));
-//                                ans4 = (queryDocumentSnapshot.getString("Town"));
-//                                ans5 = (queryDocumentSnapshot.getString("Town"));
-//                                choice1_1 = (queryDocumentSnapshot.getString("Town"));
-//                                choice1_2 = (queryDocumentSnapshot.getString("Town"));
-//                                choice1_3 = (queryDocumentSnapshot.getString("Town"));
-//                                choice1_4 = (queryDocumentSnapshot.getString("Town"));
-//                                choice2_1 = (queryDocumentSnapshot.getString("Town"));
-//                                choice2_2 = (queryDocumentSnapshot.getString("Town"));
-//                                choice2_3 = (queryDocumentSnapshot.getString("Town"));
-//                                choice2_4 = (queryDocumentSnapshot.getString("Town"));
-//                                choice3_1 = (queryDocumentSnapshot.getString("Town"));
-//                                choice3_2 = (queryDocumentSnapshot.getString("Town"));
-//                                choice3_3 = (queryDocumentSnapshot.getString("Town"));
-//                                choice3_4 = (queryDocumentSnapshot.getString("Town"));
-//                                choice4_1 = (queryDocumentSnapshot.getString("Town"));
-//                                choice4_2 = (queryDocumentSnapshot.getString("Town"));
-//                                choice4_3 = (queryDocumentSnapshot.getString("Town"));
-//                                choice4_4 = (queryDocumentSnapshot.getString("Town"));
-//                                choice5_1 = (queryDocumentSnapshot.getString("Town"));
-//                                choice5_2 = (queryDocumentSnapshot.getString("Town"));
-//                                choice5_3 = (queryDocumentSnapshot.getString("Town"));
-//                                choice5_4 = (queryDocumentSnapshot.getString("Town"));
-
-
-                            }
-
-//                            ansA.setText(choices[currentQuestionIndex][0]);
-//                            ansB.setText(choices[currentQuestionIndex][1]);
-//                            ansC.setText(choices[currentQuestionIndex][2]);
-//                            ansD.setText(choices[currentQuestionIndex][3]);
-
-
-
-                        }
-                    });
-        }
-
-
-
-
-//        for (int i = 0; i<quiz_model.size(); i++){
-//
-//            questions = quiz_model.get(i).getQuestions();
-//            choices = quiz_model.get(i).getChoices();
-//            answers = quiz_model.get(i).getAnswers();
-//
-//
-//
-//        }
-
-
 
 
 
@@ -217,37 +86,71 @@ public class Quiz extends AppCompatActivity{
                 ansB.setClickable(false);
                 ansC.setClickable(false);
                 ansD.setClickable(false);
-                if(selectedAnswer != ""){
-                    if(selectedAnswer.equals(answers[currentQuestionIndex])){
-                        score++;
-                        selectedButton.setBackgroundColor(Color.GREEN);
+                if(selectedAnswer != "") {
+                    if (Objects.equals(title, "Vanadzor")){
+                        if (selectedAnswer.equals(QuizAns.answers[currentQuestionIndex])) {
+                            score++;
+                            score_visible++;
+                            selectedButton.setBackgroundColor(Color.GREEN);
 
 
-                        new Handler().postDelayed(
-                                new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadNewQuestion();
-                                    }
-                                }, 600);
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadNewQuestion();
+                                        }
+                                    }, 600);
 
-                    }
-                    else {
+                        } else {
 
-                        selectedButton.setBackgroundColor(Color.RED);
-                        for(Button i:Buttons){
-                            if(i.getText().toString().equals(answers[currentQuestionIndex])){
-                                i.setBackgroundColor(Color.GREEN);
+                            selectedButton.setBackgroundColor(Color.RED);
+                            for (Button i : Buttons) {
+                                if (i.getText().toString().equals(QuizAns.answers[currentQuestionIndex])) {
+                                    i.setBackgroundColor(Color.GREEN);
+                                }
                             }
-                        }
-                        new Handler().postDelayed(
-                                new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadNewQuestion();
-                                    }
-                                }, 600);
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadNewQuestion();
+                                        }
+                                    }, 600);
 
+                        }
+                    }else if (Objects.equals(title, "Dilijan")){
+                        if (selectedAnswer.equals(QuizAnsDilijan.answers[currentQuestionIndex])) {
+                            score++;
+                            score_visible++;
+                            selectedButton.setBackgroundColor(Color.GREEN);
+
+
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadNewQuestion();
+                                        }
+                                    }, 600);
+
+                        } else {
+
+                            selectedButton.setBackgroundColor(Color.RED);
+                            for (Button i : Buttons) {
+                                if (i.getText().toString().equals(QuizAnsDilijan.answers[currentQuestionIndex])) {
+                                    i.setBackgroundColor(Color.GREEN);
+                                }
+                            }
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadNewQuestion();
+                                        }
+                                    }, 600);
+
+                        }
                     }
                 }
             }
@@ -299,20 +202,6 @@ public class Quiz extends AppCompatActivity{
     }
     void loadNewQuestion(){
 
-        for (int i = 0; i<quiz_model.size(); i++){
-
-            questions = quiz_model.get(i).getQuestions();
-            choices = quiz_model.get(i).getChoices();
-            answers = quiz_model.get(i).getAnswers();
-
-
-
-        }
-
-
-
-
-
         ansA.setClickable(true);
         ansB.setClickable(true);
         ansC.setClickable(true);
@@ -332,17 +221,24 @@ public class Quiz extends AppCompatActivity{
         }
 
 
-        questionTextView.setText(questions[currentQuestionIndex]);
-        ansA.setText(choices[currentQuestionIndex][0]);
-        ansB.setText(choices[currentQuestionIndex][1]);
-        ansC.setText(choices[currentQuestionIndex][2]);
-        ansD.setText(choices[currentQuestionIndex][3]);
-
-
+        if (Objects.equals(title, "Vanadzor")) {
+            questionTextView.setText(QuizAns.questions[currentQuestionIndex]);
+            ansA.setText(QuizAns.choices[currentQuestionIndex][0]);
+            ansB.setText(QuizAns.choices[currentQuestionIndex][1]);
+            ansC.setText(QuizAns.choices[currentQuestionIndex][2]);
+            ansD.setText(QuizAns.choices[currentQuestionIndex][3]);
+        } else if (Objects.equals(title, "Dilijan")) {
+            questionTextView.setText(QuizAns.questions[currentQuestionIndex]);
+            ansA.setText(QuizAnsDilijan.choices[currentQuestionIndex][0]);
+            ansB.setText(QuizAnsDilijan.choices[currentQuestionIndex][1]);
+            ansC.setText(QuizAnsDilijan.choices[currentQuestionIndex][2]);
+            ansD.setText(QuizAnsDilijan.choices[currentQuestionIndex][3]);
+        }
     }
 
     void finishQuiz(){
-//        compl = true;
+        compled++;
+        compl = true;
         String passStatus = "";
         if(score > totalQuestion*0.50){
             passStatus = "Passed";
@@ -352,20 +248,44 @@ public class Quiz extends AppCompatActivity{
 
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
-                .setMessage("Score is "+ score+" out of "+ totalQuestion)
+                .setMessage("Score is "+ score_visible+" out of "+ totalQuestion)
                 .setCancelable(true)
                 .show();
-        new Handler().postDelayed(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        startActivity(new Intent(Quiz.this, Map.class));
-
-                    }
-                }, 600);
 
 
 
+
+    }
+
+    public void finishfb(View view) {
+
+
+        String scorefb = String.valueOf(score);
+        String compledfb = String.valueOf(compled);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("Score", scorefb);
+            hashMap.put("Completed", compledfb);
+            hashMap.put("UserId", user.getUid());
+            db.collection("daysModel").document(id).set(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
+                }
+
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            //db.collection("daysModel").document("daysModelId").collection("tasks").add(hashMap);
+        }
+        startActivity(new Intent(Quiz.this, Map.class));
     }
 }
 
