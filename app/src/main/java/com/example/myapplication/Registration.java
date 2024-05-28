@@ -68,7 +68,7 @@ public class Registration extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
         if(mUser != null){
-            Intent intent = new Intent(Registration.this, MainActivity.class);
+            Intent intent = new Intent(Registration.this, Map.class);
             startActivity(intent);
         }
     }

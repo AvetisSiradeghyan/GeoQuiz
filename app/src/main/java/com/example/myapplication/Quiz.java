@@ -95,7 +95,7 @@ public class Quiz extends AppCompatActivity{
                 ansC.setClickable(false);
                 ansD.setClickable(false);
                 if(selectedAnswer != "") {
-                    if (Objects.equals(title, "Vanadzor")){
+                    if (Objects.equals(title, "Վանաձոր")){
                         if (selectedAnswer.equals(QuizAns.answers[currentQuestionIndex])) {
                             score++;
                             score_visible++;
@@ -127,7 +127,7 @@ public class Quiz extends AppCompatActivity{
                                     }, 600);
 
                         }
-                    }else if (Objects.equals(title, "Dilijan")){
+                    }else if (Objects.equals(title, "Դիլիջան")){
                         if (selectedAnswer.equals(QuizAnsDilijan.answers[currentQuestionIndex])) {
                             score++;
                             score_visible++;
@@ -147,6 +147,102 @@ public class Quiz extends AppCompatActivity{
                             selectedButton.setBackgroundColor(Color.RED);
                             for (Button i : Buttons) {
                                 if (i.getText().toString().equals(QuizAnsDilijan.answers[currentQuestionIndex])) {
+                                    i.setBackgroundColor(Color.GREEN);
+                                }
+                            }
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadNewQuestion();
+                                        }
+                                    }, 600);
+
+                        }
+                    }else if (Objects.equals(title, "Երևան")){
+                        if (selectedAnswer.equals(QuizAnsYervan.answers[currentQuestionIndex])) {
+                            score++;
+                            score_visible++;
+                            selectedButton.setBackgroundColor(Color.GREEN);
+
+
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadNewQuestion();
+                                        }
+                                    }, 600);
+
+                        } else {
+
+                            selectedButton.setBackgroundColor(Color.RED);
+                            for (Button i : Buttons) {
+                                if (i.getText().toString().equals(QuizAnsYervan.answers[currentQuestionIndex])) {
+                                    i.setBackgroundColor(Color.GREEN);
+                                }
+                            }
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadNewQuestion();
+                                        }
+                                    }, 600);
+
+                        }
+                    }else if (Objects.equals(title, "Իջևան")){
+                        if (selectedAnswer.equals(QuizAnsIjevan.answers[currentQuestionIndex])) {
+                            score++;
+                            score_visible++;
+                            selectedButton.setBackgroundColor(Color.GREEN);
+
+
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadNewQuestion();
+                                        }
+                                    }, 600);
+
+                        } else {
+
+                            selectedButton.setBackgroundColor(Color.RED);
+                            for (Button i : Buttons) {
+                                if (i.getText().toString().equals(QuizAnsIjevan.answers[currentQuestionIndex])) {
+                                    i.setBackgroundColor(Color.GREEN);
+                                }
+                            }
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadNewQuestion();
+                                        }
+                                    }, 600);
+
+                        }
+                    }else if (Objects.equals(title, "Գյումրի")){
+                        if (selectedAnswer.equals(QuizAnsGyumri.answers[currentQuestionIndex])) {
+                            score++;
+                            score_visible++;
+                            selectedButton.setBackgroundColor(Color.GREEN);
+
+
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            loadNewQuestion();
+                                        }
+                                    }, 600);
+
+                        } else {
+
+                            selectedButton.setBackgroundColor(Color.RED);
+                            for (Button i : Buttons) {
+                                if (i.getText().toString().equals(QuizAnsGyumri.answers[currentQuestionIndex])) {
                                     i.setBackgroundColor(Color.GREEN);
                                 }
                             }
@@ -229,18 +325,36 @@ public class Quiz extends AppCompatActivity{
         }
 
 
-        if (Objects.equals(title, "Vanadzor")) {
+        if (Objects.equals(title, "Վանաձոր")) {
             questionTextView.setText(QuizAns.questions[currentQuestionIndex]);
             ansA.setText(QuizAns.choices[currentQuestionIndex][0]);
             ansB.setText(QuizAns.choices[currentQuestionIndex][1]);
             ansC.setText(QuizAns.choices[currentQuestionIndex][2]);
             ansD.setText(QuizAns.choices[currentQuestionIndex][3]);
-        } else if (Objects.equals(title, "Dilijan")) {
-            questionTextView.setText(QuizAns.questions[currentQuestionIndex]);
+        } else if (Objects.equals(title, "Դիլիջան")) {
+            questionTextView.setText(QuizAnsDilijan.questions[currentQuestionIndex]);
             ansA.setText(QuizAnsDilijan.choices[currentQuestionIndex][0]);
             ansB.setText(QuizAnsDilijan.choices[currentQuestionIndex][1]);
             ansC.setText(QuizAnsDilijan.choices[currentQuestionIndex][2]);
             ansD.setText(QuizAnsDilijan.choices[currentQuestionIndex][3]);
+        }else if (Objects.equals(title, "Երևան")) {
+            questionTextView.setText(QuizAnsYervan.questions[currentQuestionIndex]);
+            ansA.setText(QuizAnsYervan.choices[currentQuestionIndex][0]);
+            ansB.setText(QuizAnsYervan.choices[currentQuestionIndex][1]);
+            ansC.setText(QuizAnsYervan.choices[currentQuestionIndex][2]);
+            ansD.setText(QuizAnsYervan.choices[currentQuestionIndex][3]);
+        }else if (Objects.equals(title, "Իջևան")) {
+            questionTextView.setText(QuizAnsIjevan.questions[currentQuestionIndex]);
+            ansA.setText(QuizAnsIjevan.choices[currentQuestionIndex][0]);
+            ansB.setText(QuizAnsIjevan.choices[currentQuestionIndex][1]);
+            ansC.setText(QuizAnsIjevan.choices[currentQuestionIndex][2]);
+            ansD.setText(QuizAnsIjevan.choices[currentQuestionIndex][3]);
+        }else if (Objects.equals(title, "Գյումրի")) {
+            questionTextView.setText(QuizAnsGyumri.questions[currentQuestionIndex]);
+            ansA.setText(QuizAnsGyumri.choices[currentQuestionIndex][0]);
+            ansB.setText(QuizAnsGyumri.choices[currentQuestionIndex][1]);
+            ansC.setText(QuizAnsGyumri.choices[currentQuestionIndex][2]);
+            ansD.setText(QuizAnsGyumri.choices[currentQuestionIndex][3]);
         }
     }
 

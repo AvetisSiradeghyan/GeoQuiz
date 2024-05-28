@@ -75,16 +75,31 @@ public class First extends AppCompatActivity {
 
 
 
-        if (Objects.equals(title, "Vanadzor")) {
+        if (Objects.equals(title, "Վանաձոր")) {
             slideModels.clear();
             slideModels.add(new SlideModel(R.drawable.vanadzor1, ScaleTypes.FIT));
             slideModels.add(new SlideModel(R.drawable.vanadzor2, ScaleTypes.FIT));
             slideModels.add(new SlideModel(R.drawable.vanadzor3, ScaleTypes.FIT));
-        } else if (Objects.equals(title, "Dilijan")) {
+        } else if (Objects.equals(title, "Դիլիջան")) {
             slideModels.clear();
             slideModels.add(new SlideModel(R.drawable.dilijan1, ScaleTypes.FIT));
             slideModels.add(new SlideModel(R.drawable.dilijan2, ScaleTypes.FIT));
             slideModels.add(new SlideModel(R.drawable.dilijan3, ScaleTypes.FIT));
+        }else if (Objects.equals(title, "Երևան")) {
+            slideModels.clear();
+            slideModels.add(new SlideModel(R.drawable.yerevan1, ScaleTypes.FIT));
+            slideModels.add(new SlideModel(R.drawable.yerevan2, ScaleTypes.FIT));
+            slideModels.add(new SlideModel(R.drawable.yerevan3, ScaleTypes.FIT));
+        }else if (Objects.equals(title, "Գյումրի")) {
+            slideModels.clear();
+            slideModels.add(new SlideModel(R.drawable.gyumri1, ScaleTypes.FIT));
+            slideModels.add(new SlideModel(R.drawable.gyumri2, ScaleTypes.FIT));
+            slideModels.add(new SlideModel(R.drawable.gyumri3, ScaleTypes.FIT));
+        }else if (Objects.equals(title, "Իջևան")) {
+            slideModels.clear();
+            slideModels.add(new SlideModel(R.drawable.ijevan1, ScaleTypes.FIT));
+            slideModels.add(new SlideModel(R.drawable.ijevan2, ScaleTypes.FIT));
+            slideModels.add(new SlideModel(R.drawable.ijevan3, ScaleTypes.FIT));
         }
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);

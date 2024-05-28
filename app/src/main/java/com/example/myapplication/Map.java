@@ -47,7 +47,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
 //    public static boolean compl = Quiz.compl;
 
-    Button profile;
+    ImageButton profile;
     int visibility = 0;
     float zoomLevel = 7;
     private GoogleMap map;
@@ -68,8 +68,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
 
     View view1;
-
-    TextView total_score_view, average;
 
 
     @Override
